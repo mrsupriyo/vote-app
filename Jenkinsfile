@@ -5,7 +5,7 @@ pipeline{
             steps {
                 sh ''' 
                 cd vote
-                docker build -t sup0310/capstone:v1 .
+                docker build -t sup0310/capsvote:v1 .
                 docker login --username=sup0310 --password=Apple@310
                 docker push sup0310/capsvote:v1
                 '''
