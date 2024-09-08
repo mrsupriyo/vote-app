@@ -11,16 +11,16 @@ pipeline{
                 '''
             }
         }
-    }
-    stage('DEPLOY TO MINIKUBE') {
-        steps {
-            script{
-                sh '''
-                cd k8s-specifications
-                kubectl apply -f deployment.yaml
-                kubectl apply -f ingress.yaml
-                '''
+        stage('DEPLOY TO MINIKUBE') {
+            steps {
+                script{
+                    sh '''
+                    cd k8s-specifications
+                    kubectl apply -f deployment.yaml
+                    kubectl apply -f ingress.yaml
+                    '''
+                }
             }
         }
     }
-}
+}    
