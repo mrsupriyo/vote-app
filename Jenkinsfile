@@ -15,9 +15,7 @@ pipeline{
             steps {
                 script{
                     sh '''
-                    minikube status
                     minikube start
-                    minikube status
                     kubectl set image deployment/vote vote=sup0310/capsvote:${BUILD_NUMBER}
                     '''
                 }
