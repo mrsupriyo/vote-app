@@ -5,7 +5,7 @@ pipeline{
             steps {
                 sh ''' 
                 cd vote
-                docker build -t sup0310/capsvote:v1 .
+                docker build -t sup0310/capsvote:${BUILD_NUMBER} .
                 docker login --username=sup0310 --password=Apple@310
                 docker push sup0310/capsvote:v1
                 '''
@@ -15,10 +15,7 @@ pipeline{
             steps {
                 script{
                     sh '''
-                    whoami
-                    cd k8s-specifications
-                    kubectl apply -f deployment.yaml
-                    kubectl apply -f ingress.yaml
+                    kubectl set image deployment/vote vote=sup0310/capsvote:${BUILD_NUMBER}
                     '''
                 }
             }
