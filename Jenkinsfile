@@ -15,6 +15,7 @@ pipeline{
             steps {
                 script{
                     sh '''
+                    whoami
                     cd k8s-specifications
                     kubectl apply -f deployment.yaml
                     kubectl apply -f ingress.yaml
