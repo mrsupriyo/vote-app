@@ -5,18 +5,18 @@ RUN apt-get update
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /home/ubuntu/Project-1/example-voting-app/vote
+WORKDIR /vote
 
-COPY requirements.txt /home/ubuntu/Project-1/example-voting-app/vote
+COPY requirements.txt /vote
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # FROM base AS dev
 RUN pip install watchdog
 ENV FLASK_ENV=development
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
 
-COPY . /home/ubuntu/Project-1/example-voting-app/vote
+COPY . /vote
 
 EXPOSE 90
 
