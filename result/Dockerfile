@@ -1,22 +1,22 @@
-FROM node:18-slim
+FROM node:latest
 
 # add curl for healthcheck
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl tini && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends curl tini
+RUN rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/local/app
+WORKDIR /result
 
 # have nodemon available for local dev use (file watching)
 RUN npm install -g nodemon
 
 COPY package*.json ./
 
-RUN npm ci && \
- npm cache clean --force && \
- mv /usr/local/app/node_modules /node_modules
+RUN npm ci
+RUN npm cache clean --force
+RUN mv /usr/local/app/node_modules /node_modules
 
-COPY . .
+COPY . / result
 
 ENV PORT 80
 EXPOSE 80
