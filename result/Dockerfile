@@ -1,13 +1,11 @@
 FROM node:latest
 
-# add curl for healthcheck
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends curl tini
 RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /result
 
-# have nodemon available for local dev use (file watching)
 RUN npm install -g nodemon
 
 COPY package*.json ./
